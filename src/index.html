@@ -56,11 +56,11 @@
     <section>
     <header><h2>Repurposing GitHub Pages</h2></header>
       <p>Successful technologies get repurposed.</p>
-      <p>What else can we do with this?</p>
       <p>GitHub Pages is a great, simple web host for static pages.</p>
+      <p>What else can we do with this?</p>
       <p>Let's overload it!</p>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="definition" class="slide"><div>
     <section>
@@ -68,23 +68,26 @@
       <p>Offline Web Apps are apps that work when your network connection doesn't.</p>
       <p>Your browser loads them, and you can use them.</p>
       <p>Games, utilities, anything that isn't absolutely dependent on the network.</p>
+      <p>Not only offline, but also on lie-fi.
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="broken-cache" class="slide"><div>
     <section>
     <header><h2>Broken</h2></header>
       <p>Browsers have had caches forever, but going offline usually means losing your apps.</p>
+      [picture of broken page]
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="just-work" class="slide"><div>
     <section>
     <header><h2>Just Work</h2></header>
       <p>Native apps just work.</p>
+      [picture of not broken native app]
       <p>How do we make web apps just work?</p>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="app-cache" class="slide"><div>
     <section>
@@ -93,7 +96,7 @@
       <p>"Application Cache is a douchebag." - <a href="http://alistapart.com/article/application-cache-is-a-douchebag">Jake Archibald</a></p>
       <p>Web Platform Developers started over.</p>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="service-workers" class="slide"><div>
     <section>
@@ -102,7 +105,7 @@
       <p>AppCache was declarative? SW will be imperative!</p>
       <p>AppCache was specific? SW will be general!</p>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="powerful-abstraction" class="slide"><div>
     <section>
@@ -110,8 +113,9 @@
       <p>like a server running on the client</p>
       <p>can intercept requests and serve them from its own local cache</p>
       <p>Let's use it to offline an app on GitHub Pages!</p>
+      [diagram of service worker behavior]
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="oghliner" class="slide"><div>
     <section>
@@ -121,18 +125,18 @@
       <p>you can also use it as a tool with your existing app</p>
       <p>integrate it into a Gulp-based build system</p>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="key-functions" class="slide"><div>
     <section>
     <header><h2>Three Key Functions</h2></header>
     <ol>
-      <li>offline: generate service worker script with list of assets to cache on client.
-      <li>deploy: update gh-pages branch with assets and script.
-      <li>configure: set up Travis CI to auto-deploy to GitHub Pages on commits to master.
+      <li>offline</li>
+      <li>deploy</li>
+      <li>configure</li>
     </ol>
     </section>
-  </div></div>  
+  </div></div>
 
 
   <div id="offline" class="slide"><div>
@@ -153,7 +157,7 @@
         * also need to copy offline-manager.js and load it in HTML pages
       </footer>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="offline-result" class="slide"><div>
     <section>
@@ -166,7 +170,7 @@
       [11:12:29] Caching static resource "dist/js/offline-manager.js" (176 B)<br>
       …<br>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="deploy" class="slide"><div>
     <section>
@@ -180,7 +184,7 @@
         <code>});</code>
       </pre>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="deploy-result" class="slide"><div>
     <section>
@@ -196,17 +200,20 @@
         [11:17:46] Committing<br>
         [11:17:46] Pushing<br>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="configure" class="slide"><div>
     <section>
     <header><h2>Configuring</h2></header>
       <pre>> oghliner configure</pre>
+      [explain how this is automation of build+offline+deploy]
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="configure-result" class="slide"><div>
     <section>
+        [replace with diagram explaining process]
+        [show screenshot of build output of Travis]
         > oghliner configure<br>
         <br>
         Creating temporary GitHub token for getting Travis token…<br>
@@ -221,10 +228,11 @@
         in .travis.yml and push the commit to the origin/master branch:<br>
       </pre>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="demo" class="slide shout"><div>
     <section>
+      [show Network panel in Chrome]
       <header><h2>Demo</h2></header>
       <footer class="notes">
         [show Egg Timer counting down time left in presentation]
@@ -233,38 +241,49 @@
         [close Egg Timer, restart browser, reopen Egg Timer, show it running]
         </footer>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="caveats" class="slide"><div>
     <section>
       <header><h2>Caveats</h2></header>
       <ol>
-        <li>you need TLS</li>
-        <li>that makes it troublesome to use a custom domain</li>
+        <li>you need TLS:
+        ["sw create the opportunity for a bad actor to turn a bad day into a bad eternity"]
+        [letsencrypt.org?]</li>
+        <li>that makes it troublesome to use a custom domain
+        [suggest that github could make this much easier]</li>
         <li>work is in progress, it's early days</li>
         <li>Oghliner is immature, pre-1.0, breaking changes</li>
-        <li>Service Workers can do more than offlining; stay tuned</li>
+        <li>importance of CORS headers in the services you use</li>
+        <li>Service Workers can do more than offlining [like push]; stay tuned</li>
       </ol>
     </section>
-  </div></div>  
+  </div></div>
+
+  <div id="can-i-use" class="slide shout"><div>
+    <section>
+      <header><h2>Can I use?</h2></header>
+      [show diagram of status of support]
+    </section>
+  </div></div>
 
   <div id="by-the-way" class="slide shout"><div>
     <section>
       <header><h2>By the way…</h2></header>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="questions" class="slide shout"><div>
     <section>
       <header><h2>Questions?</h2></header>
     </section>
-  </div></div>  
+  </div></div>
 
   <div id="shout" class="slide shout"><div>
     <section>
       <header><h2>Thank You</h2></header>
     </section>
-  </div></div>  
+  </div></div>
 
   <div class="progress"><div></div></div>
 
