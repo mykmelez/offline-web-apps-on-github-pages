@@ -1,693 +1,274 @@
-<!DOCTYPE HTML>
-<!-- <html lang="en-US"> -->
+<!DOCTYPE html>
 <html lang="en-US" class="fade">
-<!-- 
-  ^ a class of "fade" makes slides fade smoothly into one another
- -->
-<!-- <html lang="en-US" class="nonumbers"> -->
-<!-- 
-  If you want no numbers on the slides add a "nonumbers" class 
-  to the HTML element.
-  Adding a class of "fade" will make slides fade into another. 
--->
 <head>
   <meta charset="UTF-8">
-  <title>Your talk title here</title>
-<!-- 
-  If you upload your slides to the web, ensure that you have 
-  a good title - this shows up in search results and social
-  media links
- -->
+  <title>Offline Web Apps On GitHub Pages</title>
   <meta name="viewport" content="width=device-width, user-scalable=yes">
   <link rel="stylesheet" href="themes/mozilla/styles/style.css">
 </head>
 <body class="list">
   <header class="caption">
-    <h1>Your talk title here</h1>
+    <h1>Offline Web Apps On GitHub Pages</h1>
     <p class="footer">
-      {Your name}, 
-      {your <a href="http://twitter.com/">@twitter</a> or 
-      <a href="mailto:you@email.com">you@email.com</a>}
+      Myk Melez, <a href="mailto:myk@mykzilla.org">myk@mykzilla.org</a>
     </p>
   </header>
+
   <aside class="talkdescription">
-    <p>This slide deck is using the shower system - roll over the previews to see the notes and click any slide to go into presentation mode. Then use keys to navigate. <button onclick="goFullScreen()">Go fullscreen</button></p>
+    <p>
+      This slide deck is using the shower system - roll over the previews to see
+      the notes and click any slide to go into presentation mode. Then use keys
+      to navigate. <button onclick="goFullScreen()">Go fullscreen</button>
+    </p>
     <p class="abstract">
       <strong>Abstract: </strong>
-       Add your talk abstract here
+      GitHub Pages is a simple web host for static assets. And Offline Web Apps
+      are designed to work well on devices without persistent network connections
+      (and thus no hard dependencies on dynamic server-side logic).
+
+      Which means GitHub Pages would be a great place to host Offline Web Apps,
+      if there was a way for them to ensure they'll be cached despite not having
+      control over the web server configuration. Service Workers provides
+      that missing piece.
+
+      Come see how Offline Web Apps hosted on GitHub Pages can use Service Workers
+      to cache themselves consistently and persistently, including automatic,
+      silent, and incremental updates, with graceful degradation on browsers
+      that don't support them.
+
+      You'll learn what Service Workers are, find out how to integrate them into
+      Grunt and Gulp toolchains, and see demos of Offline Web Apps on GitHub Pages
+      surviving page reloads and browser restarts on disconnected devices.
     </p>
   </aside>
 
-<!-- 
-    Simply copy the whole block for each slide you want.
-  Special slides get extra classes. Each slide needs an ID 
-  to allow for bookmarking and target jumping.
--->
-
-  <div id="cover" class="slide"><div>
-    <section>
-      <header>
-        <h2>The cover slide</h2>
-      </header>
-      <img src="pictures/templatedemos/high-five.jpg" 
-           class="middle shadow" height="400"
-           alt="High-five at the Mozilla Festival!">
-      <small class="byline">
-        {Firstname}, {Lastname}, {Conference}, {Location}, {date}
-      </small>
-      <footer class="notes">
-        This is a simple cover slide with an image in the middle
-      </footer>
-    </section>
-  </div></div>
+  <div id="cover" class="slide"><div><section>
+    <header><h2>Offline Web Apps On GitHub Pages</h2></header>
+    <img src="pictures/offline.jpg" class="middle" height="400" alt="OFFLINE">
+    <small class="credits"><a href="https://www.flickr.com/photos/mikecogh/5110795452/">Image by Michael Coghlan</a></small>
+    <small class="byline">Myk Melez, GitHub Universe 2015, San Francisco, October 2</small>
+    <footer class="notes"></footer>
+  </section></div></div>
 
 <!-- end slide block -->
 
-  <div id="callout" class="slide"><div>
+  <div id="repurposed" class="slide"><div>
     <section>
-      <header>
-        <h2>Callout slide styles</h2>
-      </header>
-      <p>The following are callout slide styles – either a large word, or a one sentence headline. Use them to chunk your presentation into logical units.</p>
-      <p>Multilingual content:</p>
-      <div class="en-US">This is English.</div>
-      <div class="zh-CN">这是中文（简体）。</div>
-      <div class="zh-TW">這是中文（繁體）。</div>
-      <div class="ja-JP">これは日本語です。</div>
+    <header><h2>Repurposing GitHub Pages</h2></header>
+      <p>Successful technologies get repurposed.</p>
+      <p>What else can we do with this?</p>
+      <p>GitHub Pages is a great, simple web host for static pages.</p>
+      <p>Let's overload it!</p>
+    </section>
+  </div></div>  
+
+  <div id="definition" class="slide"><div>
+    <section>
+    <header><h2>Definition</h2></header>
+      <p>Offline Web Apps are apps that work when your network connection doesn't.</p>
+      <p>Your browser loads them, and you can use them.</p>
+      <p>Games, utilities, anything that isn't absolutely dependent on the network.</p>
+    </section>
+  </div></div>  
+
+  <div id="broken-cache" class="slide"><div>
+    <section>
+    <header><h2>Broken</h2></header>
+      <p>Browsers have had caches forever, but going offline usually means losing your apps.</p>
+    </section>
+  </div></div>  
+
+  <div id="just-work" class="slide"><div>
+    <section>
+    <header><h2>Just Work</h2></header>
+      <p>Native apps just work.</p>
+      <p>How do we make web apps just work?</p>
+    </section>
+  </div></div>  
+
+  <div id="app-cache" class="slide"><div>
+    <section>
+    <header><h2>AppCache To The Rescue?</h2></header>
+      <p>For the last few years, the primary answer has been Application Cache.</p>
+      <p>"Application Cache is a douchebag." - <a href="http://alistapart.com/article/application-cache-is-a-douchebag">Jake Archibald</a></p>
+      <p>Web Platform Developers started over.</p>
+    </section>
+  </div></div>  
+
+  <div id="service-workers" class="slide"><div>
+    <section>
+    <header><h2>Service Workers</h2></header>
+      <p>the anti-AppCache</p>
+      <p>AppCache was declarative? SW will be imperative!</p>
+      <p>AppCache was specific? SW will be general!</p>
+    </section>
+  </div></div>  
+
+  <div id="powerful-abstraction" class="slide"><div>
+    <section>
+    <header><h2>Powerful Abstraction</h2></header>
+      <p>like a server running on the client</p>
+      <p>can intercept requests and serve them from its own local cache</p>
+      <p>Let's use it to offline an app on GitHub Pages!</p>
+    </section>
+  </div></div>  
+
+  <div id="oghliner" class="slide"><div>
+    <section>
+    <header><h2>Oghliner</h2></header>
+      <p>Node module that stitches together some other modules</p>
+      <p>provides a template for an Offline Web App</p>
+      <p>you can also use it as a tool with your existing app</p>
+      <p>integrate it into a Gulp-based build system</p>
+    </section>
+  </div></div>  
+
+  <div id="key-functions" class="slide"><div>
+    <section>
+    <header><h2>Three Key Functions</h2></header>
+    <ol>
+      <li>offline: generate service worker script with list of assets to cache on client.
+      <li>deploy: update gh-pages branch with assets and script.
+      <li>configure: set up Travis CI to auto-deploy to GitHub Pages on commits to master.
+    </ol>
+    </section>
+  </div></div>  
+
+
+  <div id="offline" class="slide"><div>
+    <section>
+      <header><h2>Offlining</h2></header>
+      <pre>> oghliner offline dist/</pre>
+      <pre>
+        <code>gulp.task('offline', function(callback) {</code>
+        <code>  oghliner.offline({</code>
+        <code>    rootDir: 'dist/',</code>
+        <code>    fileGlobs: ['*.html', 'css/*.css', 'js/*.js',</code>
+        <code>                'images/*'],</code>
+        <code>  }, callback);</code>
+        <code>});</code>
+      </pre>
       <footer class="notes">
+        * creates offline-worker.js script in root directory
+        * also need to copy offline-manager.js and load it in HTML pages
       </footer>
+    </section>
+  </div></div>  
+
+  <div id="offline-result" class="slide"><div>
+    <section>
+      <header><h2>Offlining</h2></header>
+      > oghliner offline dist/<br>
+      <br>
+      [11:12:29] Caching static resource "dist/css/index.css" (378 B)<br>
+      [11:12:29] Caching static resource "dist/index.html" (3.04 kB)<br>
+      [11:12:29] Caching static resource "dist/js/index.js" (8.43 kB)<br>
+      [11:12:29] Caching static resource "dist/js/offline-manager.js" (176 B)<br>
+      …<br>
+    </section>
+  </div></div>  
+
+  <div id="deploy" class="slide"><div>
+    <section>
+      <header><h2>Deploying</h2></header>
+      <pre>> oghliner deploy dist/</pre>
+      <pre>
+        <code>gulp.task('deploy', function(callback) {</code>
+        <code>  oghliner.deploy({</code>
+        <code>    rootDir: 'dist',</code>
+        <code>  }, callback);</code>
+        <code>});</code>
+      </pre>
+    </section>
+  </div></div>  
+
+  <div id="deploy-result" class="slide"><div>
+    <section>
+        > oghliner deploy dist/<br>
+        <br>
+        [11:17:43] Cloning git@github.com:mykmelez/eggtimer.git into ../../../../usr/local/lib/node_modules/oghliner/node_modules/gh-pages/.cache<br>
+        [11:17:44] Cleaning<br>
+        [11:17:44] Fetching origin<br>
+        [11:17:46] Checking out origin/gh-pages<br>
+        [11:17:46] Removing files<br>
+        [11:17:46] Copying files<br>
+        [11:17:46] Adding all<br>
+        [11:17:46] Committing<br>
+        [11:17:46] Pushing<br>
+    </section>
+  </div></div>  
+
+  <div id="configure" class="slide"><div>
+    <section>
+    <header><h2>Configuring</h2></header>
+      <pre>> oghliner configure</pre>
+    </section>
+  </div></div>  
+
+  <div id="configure-result" class="slide"><div>
+    <section>
+        > oghliner configure<br>
+        <br>
+        Creating temporary GitHub token for getting Travis token…<br>
+        Getting Travis token…<br>
+        Deleting temporary GitHub token for getting Travis token…<br>
+        Checking the status of your repository in Travis…<br>
+        Good news, your repository is already active in Travis!<br>
+        Encrypting GitHub token…<br>
+        Writing encrypted GitHub token to .travis.yml file…<br>
+        <br>
+        You're ready to auto-deploy using Travis!  Just commit the changes<br>
+        in .travis.yml and push the commit to the origin/master branch:<br>
+      </pre>
+    </section>
+  </div></div>  
+
+  <div id="demo" class="slide shout"><div>
+    <section>
+      <header><h2>Demo</h2></header>
+      <footer class="notes">
+        [show Egg Timer counting down time left in presentation]
+        [reload Egg Timer, show it retaining state]
+        [kill network connection, reload Egg Timer, show it running]
+        [close Egg Timer, restart browser, reopen Egg Timer, show it running]
+        </footer>
+    </section>
+  </div></div>  
+
+  <div id="caveats" class="slide"><div>
+    <section>
+      <header><h2>Caveats</h2></header>
+      <ol>
+        <li>you need TLS</li>
+        <li>that makes it troublesome to use a custom domain</li>
+        <li>work is in progress, it's early days</li>
+        <li>Oghliner is immature, pre-1.0, breaking changes</li>
+        <li>Service Workers can do more than offlining; stay tuned</li>
+      </ol>
+    </section>
+  </div></div>  
+
+  <div id="by-the-way" class="slide shout"><div>
+    <section>
+      <header><h2>By the way…</h2></header>
+    </section>
+  </div></div>  
+
+  <div id="questions" class="slide shout"><div>
+    <section>
+      <header><h2>Questions?</h2></header>
     </section>
   </div></div>  
 
   <div id="shout" class="slide shout"><div>
     <section>
-      <header>
-        <h2>
-          <div class="en-US">Shout slide</div>
-          <div class="zh-CN">标题</div>
-          <div class="zh-TW">標題</div>
-          <div class="ja-JP">タイトル</div>
-        </h2>
-      </header>
-      <footer class="notes">
-      </footer>
+      <header><h2>Thank You</h2></header>
     </section>
   </div></div>  
 
-  <div id="oneline" class="slide oneline"><div>
-    <section>
-      <header>
-        <h2><strong>Imagine</strong>: One line slide</h2>
-      </header>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>  
-
-  <div id="imagesinfo" class="slide"><div>
-    <section>
-      <header>
-        <h2>Image slide styles</h2>
-      </header>
-      <ul>
-        <li>Images are either backgrounds or part of the page.</li>
-        <li>Background images need a "cover" class on on the slide DIV.</li>
-        <li>In-page images need a class of "middle" to get centered</li>
-        <li>Adding "left" or "right" classes floats the image and you can use text next to them</li>
-        <li>Adding a "shadow" class adds a drop-shadow.</li>
-        <li>FIGURE elements around the image allow for a "swinging frame" effect</li>
-        <li>Images can also be videos or SVG. :)</li>
-      </ul>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="imageh" class="slide cover w"><div>
-    <section>
-      <header>
-        <h2>Image slide (stretched horizontal)</h2>
-      </header>
-      <img src="pictures/templatedemos/phones.jpg" 
-           class="middle" 
-           alt="Firefox OS phones">
-      <small class="credits">
-        <a href="http://www.flickr.com/photos/codepo8/9506545800/">
-          Image by Chris Heilmann
-        </a>
-      </small>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="imagev" class="slide cover h"><div>
-    <section>
-      <header>
-        <h2>Image slide (stretched vertical)</h2>
-      </header>
-      <img src="pictures/templatedemos/phones.jpg" 
-           class="middle" 
-           alt="Firefox OS phones">
-      <small class="credits">
-        <a href="http://www.flickr.com/photos/codepo8/9506545800/">
-          Image by Chris Heilmann
-        </a>
-      </small>
-      <footer class="notes">
-        Introduce yourself, who you are and why you are the person to give that talk
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="imagemiddle" class="slide"><div>
-    <section>
-      <header>
-        <h2>Image slide (centered, resized)</h2>
-      </header>
-      <img src="pictures/templatedemos/smallphones.jpg" 
-           class="middle"
-           alt="Firefox OS phones">
-      <small class="credits">
-        <a href="http://www.flickr.com/photos/codepo8/9506545800/">
-          Image by Chris Heilmann
-        </a>
-      </small>
-      <footer class="notes">
-        Introduce yourself, who you are and why you are the person to give that talk
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="imageright" class="slide"><div>
-    <section>
-      <header>
-        <h2>Image slide (right)</h2>
-      </header>
-      <img src="pictures/templatedemos/smallphones.jpg" 
-           class="right" 
-           alt="Firefox OS phones">
-
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-      </ul>     
-
-      <small class="credits">
-        <a href="http://www.flickr.com/photos/codepo8/9506545800/">
-          Image by Chris Heilmann
-        </a>
-      </small>
-      <footer class="notes">
-        Introduce yourself, who you are and why you are the person to give that talk
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="imageleft" class="slide"><div>
-    <section>
-      <header>
-        <h2>Image slide (left)</h2>
-      </header>
-      <img src="pictures/templatedemos/smallphones.jpg" 
-           class="left" 
-           alt="Firefox OS phones">
-
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-      </ul>     
-
-      <small class="credits">
-        <a href="http://www.flickr.com/photos/codepo8/9506545800/">
-          Image by Chris Heilmann
-        </a>
-      </small>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="imageshadow" class="slide"><div>
-    <section>
-      <header>
-        <h2>Image slide (centered, shadow)</h2>
-      </header>
-      <img src="pictures/templatedemos/smallphones.jpg" 
-           class="middle shadow"
-           alt="Firefox OS phones">
-      <small class="credits">
-        <a href="http://www.flickr.com/photos/codepo8/9506545800/">
-          Image by Chris Heilmann
-        </a>
-      </small>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="imageframe" class="slide"><div>
-    <section>
-      <header>
-        <h2>Image slide (framed)</h2>
-      </header>
-      <figure class="middle shadow frame">
-      <img src="pictures/templatedemos/smallphones.jpg" 
-           alt="Firefox OS phones">
-      </figure>     
-      <small class="credits">
-        <a href="http://www.flickr.com/photos/codepo8/9506545800/">
-          Image by Chris Heilmann
-        </a>
-      </small>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="imageswing" class="slide"><div>
-    <section>
-      <header>
-        <h2>Image slide (framed, swinging)</h2>
-      </header>
-      <figure class="middle shadow frame swing">
-      <img src="pictures/templatedemos/smallphones.jpg" 
-           alt="Firefox OS phones">
-      </figure>     
-      <small class="credits">
-        <a href="http://www.flickr.com/photos/codepo8/9506545800/">
-          Image by Chris Heilmann
-        </a>
-      </small>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="imagegif" class="slide"><div>
-    <section>
-      <header>
-        <h2>Image slide (GIF)</h2>
-      </header>
-      <img src="pictures/templatedemos/earthphases.gif" 
-           alt="Earthphases" class="right" width="300">
-      <p>GIFs animate from the start when the slide shows.</p>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="videoswing" class="slide"><div>
-    <section>
-      <header>
-        <h2>Image slide (video)</h2>
-      </header>
-      <video controls class="middle shadow">
-        <source src="pictures/templatedemos/wave.mp4" type="video/mp4"></source>
-        <source src="pictures/templatedemos/wave.webm" type="video/webm"></source>
-      </video>
-      <small class="credits">
-        <a href="http://www.flickr.com/photos/codepo8/9506545800/">
-          Image by Chris Heilmann
-        </a>
-      </small>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="videoautoplay" class="slide autoplay"><div>
-    <section>
-      <header>
-        <h2>Image slide (video autoplay)</h2>
-      </header>
-      <video controls class="middle shadow">
-        <source src="pictures/templatedemos/wave.mp4" type="video/mp4"></source>
-        <source src="pictures/templatedemos/wave.webm" type="video/webm"></source>
-      </video>
-      <small class="credits">
-        <a href="http://www.flickr.com/photos/codepo8/9506545800/">
-          Image by Chris Heilmann
-        </a>
-      </small>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-
-  <div id="listtypes" class="slide"><div>
-    <section>
-      <header>
-        <h2>List style types</h2>
-      </header>
-      <p>The following are the different kinds of list styles available to you. <strong>Always remember that bullets kill</strong> – both people and audiences. If people can read ahead of your narrative, they will. And you made yourself redundant as a speaker.</p>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="numbered" class="slide"><div>
-    <section>
-      <header>
-        <h2>Numbered list</h2>
-      </header>
-      <ol>
-        <li>Collect underpants</li>
-        <li>???</li>
-        <li>Profit</li>
-      </ol>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
- <div id="list" class="slide"><div>
-    <section>
-      <header>
-        <h2>Unordered List</h2>
-      </header>
-      <ul>
-        <li>Tigers</li>
-        <li>Elephants</li>
-        <li>Bears
-          <ul>
-            <li>Koalas</li>
-            <li>Polar</li>
-            <li>Panda</li>
-          </ul>
-        </li>
-        <li>Oh my&hellip;</li>
-      </ul>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
- <div id="orderedlist" class="slide"><div>
-    <section>
-      <header>
-        <h2>Ordered List</h2>
-      </header>
-      <ol>
-        <li>Tigers</li>
-        <li>Elephants</li>
-        <li>Bears
-          <ol>
-            <li>Koalas</li>
-            <li>Polar</li>
-            <li>Panda</li>
-          </ol>
-        </li>
-        <li>Oh my&hellip;</li>
-      </ol>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
- <div id="longlist" class="slide"><div>
-    <section>
-      <header>
-        <h2>Long List</h2>
-      </header>
-      <ol class="longlist">
-        <li>Tigers</li>
-        <li>Elephants</li>
-        <li>Bears
-          <ol>
-            <li>Koalas</li>
-            <li>Polar</li>
-            <li>Panda</li>
-          </ol>
-        </li>
-        <li>Hedgehogs</li>
-        <li>Opossums</li>
-        <li>Hyrax</li>
-        <li>Capybara</li>
-        <li>Oh my&hellip;</li>
-      </ol>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
- <div id="inlinelist" class="slide"><div>
-    <section>
-      <header>
-        <h2>Inline List</h2>
-      </header>
-      <ul class="inline">
-        <li>Tigers</li>
-        <li>Elephants</li>
-        <li>Bears</li>
-        <li>Hedgehogs</li>
-        <li>Opossums</li>
-        <li>Hyrax</li>
-        <li>Capybara</li>
-        <li>Oh my&hellip;</li>
-      </ul>
-      <footer class="notes">moo
-      </footer>
-    </section>
- </div></div>
-
- <div id="animatedlist" class="slide"><div>
-    <section>
-      <header>
-        <h2>Animated List</h2>
-      </header>
-      <ul class="inner">
-        <li class="active">Tigers</li>
-        <li>Elephants</li>
-        <li>Bears</li>
-        <li>Hedgehogs</li>
-        <li>Opossums</li>
-        <li>Hyrax</li>
-        <li>Capybara</li>
-        <li>Oh my&hellip;</li>
-      </ul>
-      <footer class="notes">
-      </footer>
-    </section>
- </div></div>
-
-  <div id="onelinelist" class="slide"><div>
-    <section>
-      <header>
-        <h2>One line list</h2>
-      </header>
-      <ul class="oneline">
-        <li>Elephants</li>
-        <li>Aardvarks</li>
-        <li>Hedgehogs</li>
-        <li>Kittens</li>
-        <li>Puppies</li>
-      </ul>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="reallylonglist" class="slide"><div>
-    <section>
-      <header>
-        <h2>Long list</h2>
-      </header>
-      <ul class="lots">
-        <li>Elephants</li>
-        <li>Aardvarks</li>
-        <li>Hedgehogs</li>
-        <li>Kittens</li>
-        <li>Puppies</li>
-        <li>Axolotls</li>
-        <li>Elephants</li>
-        <li>Aardvarks</li>
-        <li>Hedgehogs</li>
-        <li>Kittens</li>
-        <li>Puppies</li>
-        <li>Axolotls</li>
-        <li>Elephants</li>
-        <li>Aardvarks</li>
-        <li>Hedgehogs</li>
-        <li>Kittens</li>
-        <li>Puppies</li>
-        <li>Axolotls</li>
-        <li>Elephants</li>
-        <li>Aardvarks</li>
-        <li>Hedgehogs</li>
-        <li>Kittens</li>
-        <li>Puppies</li>
-        <li>Axolotls</li>
-        <li>Elephants</li>
-        <li>Aardvarks</li>
-        <li>Hedgehogs</li>
-        <li>Kittens</li>
-        <li>Puppies</li>
-        <li>Axolotls</li>
-      </ul>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="codestyles" class="slide"><div>
-    <section>
-      <header>
-        <h2>Code styles</h2>
-      </header>
-      <p>Code is not automatically encoded and colour coded. The space you have for code is also limited. This is by design: <strong>presentations are not there to drench audiences with code</strong>. Switch to your editor if needed and link to live, maintained code so people don't copy+paste.</p>
-      <footer class="notes">
-      </footer> 
-    </section>
-  </div></div>
-
-   <div id="codedemo" class="slide"><div>
-    <section>
-      <header>
-        <h2>code</h2>
-      </header>
-        <pre>
-        <code>var installapp = navigator.mozApps.install(manifestURL);</code>
-        <code>installapp.<mark>onsuccess</mark> = function(data) {</code>
-        <code>  // App is installed</code>
-        <code>};</code>
-        <code>installapp.<mark class="important">onerror</mark> = function() {</code>
-        <code> // App wasn't installed, info is in </code>
-        <code> // installapp.error.name</code>
-        <code>};</code>
-        </pre>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-   <div id="markupdemo" class="slide"><div>
-    <section>
-      <header>
-        <h2>Markup is encoded</h2>
-      </header>
-        <pre>
-        <code><p>Paragraph without encode</p></code>
-        <code>&lt;p&gt;Paragraph without encode&lt;/p&gt;</code>
-        <code><!-- for backwards compatibility --></code>
-        </pre>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="livecode" class="slide"><div>
-    <section>
-      <header>
-        <h2>Live CSS code</h2>
-      </header>
-      <div id="demodiv"></div>
-<style contenteditable>#demodiv {
-  width: 200px;
-  height: 200px;
-  background: green;
-}</style>
-    <footer class="notes">
-    </footer>
-    </section>
-  </div></div>
-
-  <div id="smoothlivecode" class="slide"><div>
-    <section>
-      <header>
-        <h2>Live CSS code (smooth)</h2>
-      </header>
-      <div id="demodiv2" class="smoothdemo"></div>
-<style contenteditable>#demodiv2 {
-  width: 200px;
-  height: 200px;
-  background: green;
-}</style>
-    <footer class="notes">
-    </footer>
-    </section>
-  </div></div>
-
-  <div id="quotes" class="slide"><div>
-    <section>
-      <header>
-        <h2>Quote styles</h2>
-      </header>
-      <p>Quotes are a superb way to look clever and get more kudos for being in the know. Make sure you attribute them correctly and do not quote out of context.</p>
-      <footer class="notes">
-      </footer> 
-    </section>
-  </div></div>
-
-  <div id="simplequote" class="slide"><div>
-    <section>
-      <header>
-        <h2>Quote</h2>
-      </header>
-      <blockquote>
-        <p>The worst part of internet quotes is that you can never be sure that they are attributed correctly.</p>
-        <p class="byline">Benjamin Franklin</p>
-      </blockquote>
-      <footer class="notes">
-      </footer> 
-    </section>
-  </div></div>
-
-  <div id="longquote" class="slide"><div>
-    <section>
-      <header>
-        <h2>Long quote is long&hellip;</h2>
-      </header>
-      <blockquote class="lots">
-        But there's no doubt that, we went for this approach, <mark>we built this internal framework that we called Faceweb</mark>, which is basically this idea that we can take the infrastructure that we built out for pushing code everyday, not having to submit to an app store, building web code on the web stack that we have, and that we can translate that into mobile development. <mark>We just were never able to get the quality of it we wanted</mark>&hellip;
-      </blockquote>
-    <footer class="notes">
-      It seems the main failure was Facebook's approach and internal system creating HTML5 apps - not the technology itself.
-    </footer>
-    </section>
-  </div></div>
-
-  <div id="thanks" class="slide"><div>
-    <section>
-      <header>
-        <h2>Thanks</h2>
-      </header>
-      <img src="pictures/mozillaoverview/redpanda.jpg" class="right" alt="Red panda (Firefox)">
-      <ul class="nobull">
-        <li>{name}</li>
-        <li>{title}</li>
-        <li>{<a href="http://twitter.com/">@twitter</a>}</li>
-        <li><strong>Slides</strong>: {slideurl}</li>
-      </ul>
-      <small class="credits">
-        <a href="http://www.flickr.com/photos/yortw/5798336827/">Photo by Yortw</a>
-      </small>
-
-    <footer class="notes">
-    </footer>
-
-    </section>
-  </div></div>
-
-  <!--
-    To hide progress bar from entire presentation
-    just remove “progress” element.
-    -->
   <div class="progress"><div></div></div>
-  <div id="langMenuDivId">
-    <!-- Having event.stopPropagation() prevents keypresses on the language menu from affecting slideshow progression -->
-    <select id="langMenuId" onchange="changeLanguage();" onkeydown="event.stopPropagation()">
-      <option value="en-US">English</option>
-      <option value="zh-CN">中文（简体）</option>
-      <option value="zh-TW">中文（繁體）</option>
-      <option value="ja-JP">日本語</option>
-    </select>
-  </div>
+
   <script src="scripts/offline-manager.js"></script>
   <script src="scripts/script.js"></script>
-  <!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
 </body>
 </html>
