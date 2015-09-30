@@ -301,6 +301,12 @@
   </div></div>
 
   <div class="progress"><div></div></div>
+  <div id="langMenuDivId">
+    <!-- Having event.stopPropagation() prevents keypresses on the language menu from affecting slideshow progression -->
+    <select id="langMenuId" onchange="changeLanguage();" onkeydown="event.stopPropagation()">
+      <option value="en-US">English</option>
+    </select>
+  </div>
 
   <script src="scripts/offline-manager.js"></script>
   <script src="scripts/script.js"></script>
