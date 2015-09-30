@@ -50,64 +50,87 @@
     <footer class="notes"></footer>
   </section></div></div>
 
-<!-- end slide block -->
-
-  <div id="repurposed" class="slide"><div>
+  <div id="repurposed" class="slide cover"><div>
     <section>
-    <header><h2>Repurposing GitHub Pages</h2></header>
-      <p>Successful technologies get repurposed.</p>
-      <p>GitHub Pages is a great, simple web host for static pages.</p>
-      <p>What else can we do with this?</p>
-      <p>Let's overload it!</p>
-    </section>
-  </div></div>
-
-  <div id="definition" class="slide"><div>
-    <section>
-    <header><h2>Definition</h2></header>
-      <p>Offline Web Apps are apps that work when your network connection doesn't.</p>
-      <p>Your browser loads them, and you can use them.</p>
-      <p>Games, utilities, anything that isn't absolutely dependent on the network.</p>
-      <p>Not only offline, but also on lie-fi.
-    </section>
-  </div></div>
-
-  <div id="broken" class="slide cover"><div>
-    <section>
-      <img src="pictures/broken.png">
+      <header><h2>GitHub Pages</h2></header>
+      <img src="pictures/legs-to-stand-on.jpg" alt="Legs to Stand On">
+      <small class="credits"><a href="https://www.flickr.com/photos/orinrobertjohn/2966487924/">Image by Orin Zebest</a></small>
       <footer class="notes">
-        Browsers have had caches forever, but going offline usually means losing your apps.
+        GitHub Pages is a great, simple web host for static pages.
+        Successful technologies often get repurposed for uses that were unintended by their original designers.
+        What else can we do with it? Let's find out!
       </footer>
     </section>
   </div></div>
 
-  <div id="just-work" class="slide"><div>
+  <div id="definition" class="slide cover"><div>
     <section>
-    <header><h2>Just Work</h2></header>
-      <p>Native apps just work.</p>
-      [picture of not broken native app]
-      <p>How do we make web apps just work?</p>
-      <footer class="notes"></footer>
+      <header><h2>Offline Web Apps</h2></header>
+      <img src="pictures/solar-dehydrator.jpg" alt="Solar Dehydrator">
+      <small class="credits"><a href="https://www.flickr.com/photos/orinrobertjohn/2966487924/">Image by Orin Zebest</a></small>
+      <footer class="notes">
+        Offline Web Apps are apps that work when your network connection doesn't.
+        Your browser loads them, and you can use them.
+        Games, utilities, anything that isn't absolutely dependent on the network.
+        Not just for airplane mode, but also on lie-fi (i.e. wi-fi that doesn't work very well).
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="broken" class="slide cover h"><div>
+    <section>
+      <img src="pictures/broken.png">
+      <footer class="notes">
+        Browsers have had caches forever, but going offline usually means losing your ability to access the web.
+        Even if a web app's assets are in the browser's cache, it needs the network connection to load them.
+        Without a network connection, the web is usually broken.
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="just-work" class="slide cover h"><div>
+    <section>
+      <img src="pictures/native-timer.png">
+      <footer class="notes">
+        By contrast, native apps "just work."
+        How do we make web apps "just work?"
+      </footer>
     </section>
   </div></div>
 
   <div id="app-cache" class="slide"><div>
     <section>
-    <header><h2>AppCache To The Rescue?</h2></header>
-      <p>For the last few years, the primary answer has been Application Cache.</p>
-      <p>"Application Cache is a douchebag." - <a href="http://alistapart.com/article/application-cache-is-a-douchebag">Jake Archibald</a></p>
-      <p>Web Platform Developers started over.</p>
-      <footer class="notes"></footer>
+    <header><h2>Application Cache</h2></header>
+      <blockquote>
+        <p>Application Cache is a douchebag.</p>
+        <p class="byline"><a href="http://alistapart.com/article/application-cache-is-a-douchebag">Jake Archibald</a></p>
+      </blockquote>
+      <footer class="notes">
+        For the last few years, the only answer has been Application Cache.
+
+        It's a declarative Web API for specifying the assets of an app in a manifest file.
+        Browsers cache the declared assets and then use them when loading the app while offline.
+        But AppCache has a variety of issues. It doesn't support popular use cases,
+        it's full of footguns, and it just generally doesn't do what web developers want or expect.
+
+        So Web Platform Developers started over.
+      </footer>
     </section>
   </div></div>
 
-  <div id="service-workers" class="slide"><div>
+  <div id="service-workers" class="slide cover"><div>
     <section>
-    <header><h2>Service Workers</h2></header>
-      <p>the anti-AppCache</p>
-      <p>AppCache was declarative? SW will be imperative!</p>
-      <p>AppCache was specific? SW will be general!</p>
-      <footer class="notes"></footer>
+    <header><h2>Service Workers To The Rescue!</h2></header>
+    <img src="pictures/air-rescue.jpg" class="middle" alt="Air Rescue">
+    <small class="credits"><a href="https://www.flickr.com/photos/timecaptured/8222176156/">Image by Karsten Seiferlin</a></small>
+      <footer class="notes">
+        Service Workers are the anti-AppCache.
+        Whereas AppCache was declarative, Service Workers are declarative.
+        Whereas AppCache tried to solve a very specific problem,
+        Service Workers is a generic solution for a variety of problems.
+        Among them, however, and front-of-mind to the Web Platform Developers
+        who worked on the spec, was the Offline Web App use case.
+      </footer>
     </section>
   </div></div>
 
