@@ -402,7 +402,7 @@ function goFullScreen() {
 
 var lang = 'en-US';
 try {
-  lang = new URL(window.location).searchParams.get('lang');
+  lang = new URL(window.location).searchParams.get('lang') || lang;
 } catch (ex) {
   // searchParams isn't supported in all browsers
 }
