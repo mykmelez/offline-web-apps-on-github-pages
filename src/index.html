@@ -134,40 +134,33 @@
     </section>
   </div></div>
 
-  <div id="powerful-abstraction" class="slide"><div>
+  <div id="powerful-abstraction" class="slide w"><div>
     <section>
-    <header><h2>Powerful Abstraction</h2></header>
-      <p>like a server running on the client</p>
-      <p>can intercept requests and serve them from its own local cache</p>
-      <p>Let's use it to offline an app on GitHub Pages!</p>
-      [diagram of service worker behavior]
-      <footer class="notes"></footer>
+    <header><h2>A Powerful Abstraction</h2></header>
+      <img src="pictures/service-worker.svg">
+      <footer class="notes">
+      Service Workers are a powerful abstraction.
+      A Service Worker is something akin to a server process running on a client (i.e. a user's machine).
+      It can intercept requests and serve them from its own local cache.
+      It also has a lifecycle, with well-specified procedures for updates.
+      </footer>
     </section>
   </div></div>
 
-  <div id="oghliner" class="slide"><div>
+  <div id="oghliner" class="slide shout"><div>
     <section>
-    <header><h2>Oghliner</h2></header>
-      <p>Node module that stitches together some other modules</p>
-      <p>provides a template for an Offline Web App</p>
-      <p>you can also use it as a tool with your existing app</p>
-      <p>integrate it into a Gulp-based build system</p>
-      <footer class="notes"></footer>
+      <header><h2>Oghliner</h2></header>
+      <footer class="notes">
+        At Mozilla we recently started work on an experimental Node module called Oghliner.
+        Oghliner is designed to streamline the process of deploying Offline Web Apps on GitHub Pages.
+        Yes, it's pronounced Oghliner, like trough, Gough Street, and ghoti!
+        It provides a template for an offline web app, so you can bootstrap a new app.
+        It also provides tools to offline and deploy an existing app on GitHub Pages.
+        Those tools can be used via a command line or integrated into a build system like Gulp and Grunt.
+        Finally, it automates the process of configuring Travis CI to auto-deploy to GitHub Pages.
+      </footer>
     </section>
   </div></div>
-
-  <div id="key-functions" class="slide"><div>
-    <section>
-    <header><h2>Three Key Functions</h2></header>
-    <ol>
-      <li>offline</li>
-      <li>deploy</li>
-      <li>configure</li>
-    </ol>
-    <footer class="notes"></footer>
-    </section>
-  </div></div>
-
 
   <div id="offline" class="slide"><div>
     <section>
@@ -283,24 +276,15 @@
     <section>
       <header><h2>Caveats</h2></header>
       <ol>
-        <li>you need TLS:
-        ["sw create the opportunity for a bad actor to turn a bad day into a bad eternity"]
-        [letsencrypt.org?]</li>
-        <li>that makes it troublesome to use a custom domain
-        [suggest that github could make this much easier]</li>
-        <li>work is in progress, it's early days</li>
-        <li>Oghliner is immature, pre-1.0, breaking changes</li>
-        <li>importance of CORS headers in the services you use</li>
-        <li>Service Workers can do more than offlining [like push]; stay tuned</li>
+        <li>
+          <a href="http://caniuse.com/#feat=serviceworkers">Can I use Service Workers?</a>
+          <a href="https://jakearchibald.github.io/isserviceworkerready/">Is ServiceWorker ready?</a>
+        </li>
+        <li>https: required; (<a href="https://letsencrypt.org/">Let's Encrypt!</a>)</li>
+        <li>It's early days everywhere; the work is in progress.</li>
+        <li>Support for non-CORS requests is limited.</li>
+        <li>Stay tuned, offline is just the beginning!</li>
       </ol>
-      <footer class="notes"></footer>
-    </section>
-  </div></div>
-
-  <div id="can-i-use" class="slide shout"><div>
-    <section>
-      <header><h2>Can I use?</h2></header>
-      [show diagram of status of support]
       <footer class="notes"></footer>
     </section>
   </div></div>
