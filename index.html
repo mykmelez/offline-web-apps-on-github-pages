@@ -215,7 +215,7 @@
     <section>
         > oghliner deploy dist/<br>
         <br>
-        [11:17:43] Cloning git@github.com:mykmelez/eggtimer.git into ../../../../usr/local/lib/node_modules/oghliner/node_modules/gh-pages/.cache<br>
+        [11:17:43] Cloning git@github.com:mykmelez/eggtimer.git into …<br>
         [11:17:44] Cleaning<br>
         [11:17:44] Fetching origin<br>
         [11:17:46] Checking out origin/gh-pages<br>
@@ -230,43 +230,29 @@
 
   <div id="configure" class="slide"><div>
     <section>
-    <header><h2>Configuring</h2></header>
-      <pre>> oghliner configure</pre>
-      [explain how this is automation of build+offline+deploy]
-      <footer class="notes"></footer>
-    </section>
-  </div></div>
-
-  <div id="configure-result" class="slide"><div>
-    <section>
-        [replace with diagram explaining process]
-        [show screenshot of build output of Travis]
-        > oghliner configure<br>
-        <br>
-        Creating temporary GitHub token for getting Travis token…<br>
-        Getting Travis token…<br>
-        Deleting temporary GitHub token for getting Travis token…<br>
-        Checking the status of your repository in Travis…<br>
-        Good news, your repository is already active in Travis!<br>
-        Encrypting GitHub token…<br>
-        Writing encrypted GitHub token to .travis.yml file…<br>
-        <br>
-        You're ready to auto-deploy using Travis!  Just commit the changes<br>
-        in .travis.yml and push the commit to the origin/master branch:<br>
-      </pre>
+      <header><h2>Configuring</h2></header>
+      > oghliner configure<br>
+      <br>
+      Creating temporary GitHub token for getting Travis token…<br>
+      Getting Travis token…<br>
+      Deleting temporary GitHub token for getting Travis token…<br>
+      Checking the status of your repository in Travis…<br>
+      Good news, your repository is already active in Travis!<br>
+      Encrypting GitHub token…<br>
+      Writing encrypted GitHub token to .travis.yml file…<br>
       <footer class="notes"></footer>
     </section>
   </div></div>
 
   <div id="demo" class="slide shout"><div>
     <section>
-      [show Network panel in Chrome]
       <header><h2>Demo</h2></header>
       <footer class="notes">
-        [show Egg Timer counting down time left in presentation]
-        [reload Egg Timer, show it retaining state]
-        [kill network connection, reload Egg Timer, show it running]
-        [close Egg Timer, restart browser, reopen Egg Timer, show it running]
+        Show Egg Timer counting down time left in presentation.
+        Reload Egg Timer, show it retaining state.
+        Kill network connection, reload Egg Timer, show it running.
+        Close Egg Timer, restart browser, reopen Egg Timer, show it running.
+        Show Network panel in Chrome, where you can see Service Worker handling requests.
         </footer>
       <footer class="notes"></footer>
     </section>
@@ -280,7 +266,11 @@
           <a href="http://caniuse.com/#feat=serviceworkers">Can I use Service Workers?</a>
           <a href="https://jakearchibald.github.io/isserviceworkerready/">Is ServiceWorker ready?</a>
         </li>
-        <li>https: required; (<a href="https://letsencrypt.org/">Let's Encrypt!</a>)</li>
+        <li>
+          https: required.
+          <a href="https://blog.mozilla.org/security/2015/04/30/deprecating-non-secure-http/">Deprecating Non-Secure HTTP.</a>
+          <a href="https://letsencrypt.org/">Let's Encrypt!</a>
+        </li>
         <li>It's early days everywhere; the work is in progress.</li>
         <li>Support for non-CORS requests is limited.</li>
         <li>Stay tuned, offline is just the beginning!</li>
