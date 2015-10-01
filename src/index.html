@@ -223,24 +223,71 @@
     </section>
   </div></div>
 
-  <div id="caveats" class="slide"><div>
+  <div id="caveats" class="slide shout"><div>
     <section>
       <header><h2>Caveats</h2></header>
-      <ol>
-        <li>
-          <a href="http://caniuse.com/#feat=serviceworkers">Can I use Service Workers?</a>
-          <a href="https://jakearchibald.github.io/isserviceworkerready/">Is ServiceWorker ready?</a>
-        </li>
-        <li>
-          https: required.
-          <a href="https://blog.mozilla.org/security/2015/04/30/deprecating-non-secure-http/">Deprecating Non-Secure HTTP.</a>
-          <a href="https://letsencrypt.org/">Let's Encrypt!</a>
-        </li>
-        <li>It's early days everywhere; the work is in progress.</li>
-        <li>Support for non-CORS requests is limited.</li>
-        <li>Stay tuned, offline is just the beginning!</li>
-      </ol>
       <footer class="notes"></footer>
+    </section>
+  </div></div>
+
+  <div id="can-i-use" class="slide cover"><div>
+    <section>
+      <img src="pictures/can-i-use.png" class="middle" alt="Can I use Service Workers?">
+      <small class="credits"><a href="http://caniuse.com/serviceworkers">caniuse.com/serviceworkers</a></small>
+      <footer class="notes">
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1059784">Bug 1059784 for desktop</a> and
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1207262">bug 1207262 for Android</a>
+      have the gory details, but the summary is that Mozilla is planning to ship Service Workers
+      for desktop and Android in Firefox 43 (currently Developer Edition) or 44 (Nightly),
+      and they're enabled on pre-release builds of those versions, so you can begin testing them today.
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="is-serviceworker-ready" class="slide cover"><div>
+    <section>
+      <img src="pictures/is-serviceworker-ready.png" class="middle" alt="Is ServiceWorker ready?">
+      <small class="credits"><a href="https://jakearchibald.github.io/isserviceworkerready/">jakearchibald.github.io/isserviceworkerready</a></small>
+      <footer class="notes">
+      Is ServiceWorker ready? is a more up-to-date website specifically for Service Workers.
+      Regardless, it's early days. But Service Workers is a progressive enhancement.
+      You can add it to your website now, and it gracefully degrades to your existing experience
+      in browsers that don't support Service Workers, while becoming offline on browsers
+      that do support them.
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="https-required" class="slide shout"><div>
+    <section>
+      <header><h2>https: required</h2></header>
+      <footer class="notes">
+        The spec says:
+        <blockquote><p>
+          Service workers should be implemented to be HTTPS-only. The reasons for SSL-only support include:
+          <ul>
+            <li>Better to protect end users from man-in-the-middle attacks</li>
+            <li>Do good by encouraging HTTPS adoption</li>
+            <li>Existing "playground" services (e.g. github.io) now work with HTTPS</li>
+            <li>HTTPS is coming across much more of the web quickly</li>
+            <li>Devtools can loosen the restriction for development (file://, localhost, etc.)</li>
+          </ul>
+        </p></blockquote>
+        Also, Mozilla is planning to deprecate non-secure HTTP, per
+        <a href="https://blog.mozilla.org/security/2015/04/30/deprecating-non-secure-http/">Deprecating Non-Secure HTTP</a>.
+        And finally, <a href="https://letsencrypt.org/">Let's Encrypt!</a>
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="stay-tuned" class="slide shout"><div>
+    <section>
+      <header><h2>Stay tuned…</h2></header>
+      <footer class="notes">
+        Offline is only the beginning. Service Workers can be used to implement a variety
+        of caching strategies, including periodic background data sync. They're also being used
+        to implement push notifications.
+      </footer>
     </section>
   </div></div>
 
