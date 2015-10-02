@@ -116,13 +116,9 @@
     </section>
   </div></div>
 
-  <div id="app-cache" class="slide"><div>
+  <div id="app-cache" class="slide shout"><div>
     <section>
-    <header><h2>Application Cache</h2></header>
-      <blockquote>
-        <p>Application Cache is a douchebag.</p>
-        <p class="byline"><a href="http://alistapart.com/article/application-cache-is-a-douchebag">Jake Archibald</a></p>
-      </blockquote>
+      <header><h2>Application Cache</h2></header>
       <footer class="notes">
         For the last few years, the only answer has been Application Cache.
 
@@ -133,6 +129,15 @@
 
         So Web Platform Developers started over.
       </footer>
+    </section>
+  </div></div>
+
+  <div id="app-cache-is-a-douchbag" class="slide"><div>
+    <section>
+      <blockquote>
+        <p>Application Cache is a douchebag.</p>
+        <p class="byline"><a href="http://alistapart.com/article/application-cache-is-a-douchebag">Jake Archibald</a></p>
+      </blockquote>
     </section>
   </div></div>
 
@@ -250,6 +255,38 @@
     </section>
   </div></div>
 
+  <div id="https-required" class="slide shout"><div>
+    <section>
+      <header><h2>https: required</h2></header>
+      <footer class="notes">
+        The spec says:
+        <blockquote><p>
+          Service workers should be implemented to be HTTPS-only. The reasons for SSL-only support include:
+          <ul>
+            <li>Better to protect end users from man-in-the-middle attacks</li>
+            <li>Do good by encouraging HTTPS adoption</li>
+            <li>Existing "playground" services (e.g. github.io) now work with HTTPS</li>
+            <li>HTTPS is coming across much more of the web quickly</li>
+            <li>Devtools can loosen the restriction for development (file://, localhost, etc.)</li>
+          </ul>
+        </p></blockquote>
+        Also, Mozilla is planning to deprecate non-secure HTTP, per
+        <a href="https://blog.mozilla.org/security/2015/04/30/deprecating-non-secure-http/">Deprecating Non-Secure HTTP</a>.
+        And finally, <a href="https://letsencrypt.org/">Let's Encrypt!</a>
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="cors-recommended" class="slide shout"><div>
+    <section>
+      <header><h2>CORS: recommended</h2></header>
+      <footer class="notes">
+        Like XMLHttpRequest, Service Workers have a limited ability to load content
+        from other origins (i.e. domains), so API endpoints should include CORS headers.
+      </footer>
+    </section>
+  </div></div>
+
   <div id="can-i-use" class="slide cover"><div>
     <section>
       <img src="pictures/can-i-use.png" class="middle" alt="Can I use Service Workers?">
@@ -278,28 +315,6 @@
     </section>
   </div></div>
 
-  <div id="https-required" class="slide shout"><div>
-    <section>
-      <header><h2>https: required</h2></header>
-      <footer class="notes">
-        The spec says:
-        <blockquote><p>
-          Service workers should be implemented to be HTTPS-only. The reasons for SSL-only support include:
-          <ul>
-            <li>Better to protect end users from man-in-the-middle attacks</li>
-            <li>Do good by encouraging HTTPS adoption</li>
-            <li>Existing "playground" services (e.g. github.io) now work with HTTPS</li>
-            <li>HTTPS is coming across much more of the web quickly</li>
-            <li>Devtools can loosen the restriction for development (file://, localhost, etc.)</li>
-          </ul>
-        </p></blockquote>
-        Also, Mozilla is planning to deprecate non-secure HTTP, per
-        <a href="https://blog.mozilla.org/security/2015/04/30/deprecating-non-secure-http/">Deprecating Non-Secure HTTP</a>.
-        And finally, <a href="https://letsencrypt.org/">Let's Encrypt!</a>
-      </footer>
-    </section>
-  </div></div>
-
   <div id="stay-tuned" class="slide shout"><div>
     <section>
       <header><h2>Stay tuned…</h2></header>
@@ -318,16 +333,16 @@
     </section>
   </div></div>
 
-  <div id="questions" class="slide shout"><div>
+  <div id="shout" class="slide shout"><div>
     <section>
-      <header><h2>Questions?</h2></header>
+      <header><h2>Thank You</h2></header>
       <footer class="notes"></footer>
     </section>
   </div></div>
 
-  <div id="shout" class="slide shout"><div>
+  <div id="questions" class="slide shout"><div>
     <section>
-      <header><h2>Thank You</h2></header>
+      <header><h2>Questions?</h2></header>
       <footer class="notes"></footer>
     </section>
   </div></div>
