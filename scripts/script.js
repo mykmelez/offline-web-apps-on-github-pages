@@ -408,7 +408,7 @@ try {
 }
 
 // Pre-selects the correct current language on the dropdown menu
-document.getElementById('langMenuId').value = lang;
+document.getElementById('langMenuId').value = document.documentElement.lang = lang;
 
 function changeLanguage() {
   var langObj = document.getElementById('langMenuId');
@@ -424,4 +424,6 @@ function changeLanguage() {
   }
 }
 
-changeLanguage();
+// Don't change the language until it actually changes, since currently
+// it breaks offlining.
+// changeLanguage();

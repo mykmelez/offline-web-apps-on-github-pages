@@ -349,7 +349,9 @@
   </div></div>
 
   <div class="progress"><div></div></div>
-  <div id="langMenuDivId">
+  <!-- Hide the language menu, since this presentation currently only supports
+       a single language. -->
+  <div id="langMenuDivId" style="visibility: hidden;">
     <!-- Having event.stopPropagation() prevents keypresses on the language menu from affecting slideshow progression -->
     <select id="langMenuId" onchange="changeLanguage();" onkeydown="event.stopPropagation()">
       <option value="en-US">English</option>
