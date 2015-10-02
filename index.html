@@ -51,21 +51,25 @@
   </section></div></div>
 
   <div id="me" class="slide cover"><div><section>
+    <header><h2>That's Me</h2></header>
     <img src="pictures/me.jpg">
     <footer class="notes"></footer>
   </section></div></div>
 
   <div id="my-octocat" class="slide cover"><div><section>
+    <header><h2>That's My Octocat</h2></header>
     <img src="pictures/my-octocat.jpg">
     <footer class="notes"></footer>
   </section></div></div>
 
   <div id="mozilla" class="slide cover w"><div><section>
+    <header><h2>I Work For Mozilla</h2></header>
     <img src="pictures/mozilla-wordmark.png">
     <footer class="notes"></footer>
   </section></div></div>
 
   <div id="firefox" class="slide cover w"><div><section>
+    <header><h2>You May Have Heard Of Us</h2></header>
     <img src="pictures/firefox-logo.png">
     <footer class="notes"></footer>
   </section></div></div>
@@ -182,24 +186,25 @@
     </section>
   </div></div>
 
-  <div id="offline" class="slide"><div>
+  <div id="offline" class="slide shout"><div>
     <section>
-      <header><h2>Offlining</h2></header>
-      > oghliner offline dist/<br>
-      [11:12:29] Caching static resource "dist/css/index.css" (378 B)<br>
-      [11:12:29] Caching static resource "dist/index.html" (3.04 kB)<br>
-      [11:12:29] Caching static resource "dist/js/index.js" (8.43 kB)<br>
-      [11:12:29] Caching static resource "dist/js/offline-manager.js" (176 B)<br>
+      <header><h2>offline</h2></header>
       <footer class="notes">
-        * creates offline-worker.js script in root directory
-        * also need to copy offline-manager.js and load it in HTML pages
+        > oghliner offline dist/<br>
+        [11:12:29] Caching static resource "dist/css/index.css" (378 B)<br>
+        [11:12:29] Caching static resource "dist/index.html" (3.04 kB)<br>
+        [11:12:29] Caching static resource "dist/js/index.js" (8.43 kB)<br>
+        [11:12:29] Caching static resource "dist/js/offline-manager.js" (176 B)<br>
+        Creates an offline-worker.js script in root directory. You also need
+        to copy offline-manager.js and load it in the app's HTML pages.
       </footer>
     </section>
   </div></div>
 
-  <div id="deploy-result" class="slide"><div>
+  <div id="deploy" class="slide shout"><div>
     <section>
-      <header><h2>Deploying</h2></header>
+      <header><h2>deploy</h2></header>
+      <footer class="notes">
         > oghliner deploy dist/<br>
         [11:17:43] Cloning git@github.com:mykmelez/eggtimer.git into …<br>
         [11:17:44] Cleaning<br>
@@ -210,22 +215,23 @@
         [11:17:46] Adding all<br>
         [11:17:46] Committing<br>
         [11:17:46] Pushing<br>
-      <footer class="notes"></footer>
+      </footer>
     </section>
   </div></div>
 
-  <div id="configure" class="slide"><div>
+  <div id="configure" class="slide shout"><div>
     <section>
-      <header><h2>Configuring</h2></header>
-      > oghliner configure<br>
-      Creating temporary GitHub token for getting Travis token…<br>
-      Getting Travis token…<br>
-      Deleting temporary GitHub token for getting Travis token…<br>
-      Checking the status of your repository in Travis…<br>
-      Good news, your repository is already active in Travis!<br>
-      Encrypting GitHub token…<br>
-      Writing encrypted GitHub token to .travis.yml file…<br>
-      <footer class="notes"></footer>
+      <header><h2>Auto-Deploy Via Travis</h2></header>
+      <footer class="notes">
+        > oghliner configure<br>
+        Creating temporary GitHub token for getting Travis token…<br>
+        Getting Travis token…<br>
+        Deleting temporary GitHub token for getting Travis token…<br>
+        Checking the status of your repository in Travis…<br>
+        Good news, your repository is already active in Travis!<br>
+        Encrypting GitHub token…<br>
+        Writing encrypted GitHub token to .travis.yml file…<br>
+      </footer>
     </section>
   </div></div>
 
